@@ -26,28 +26,28 @@ const headingFont = localFont({
   display: 'swap'
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config });
-  const settings = await payload.findGlobal({
-    slug: 'site-settings',
-  });
+// export async function generateMetadata(): Promise<Metadata> {
+//   const payload = await getPayload({ config });
+//   const settings = await payload.findGlobal({
+//     slug: 'site-settings',
+//   });
 
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.bogus-jewelry.com';
+//   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.bogus-jewelry.com';
 
-  return {
-    metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: '/',
-    },
-    title: settings.seo?.title || "BOGUS Jewelry - Timeless Elegance, Unmatched Brilliance",
-    description: settings.seo?.description || "Discover exquisite jewelry crafted with passion and precision. Explore our collections of silver, gold, and unique designs.",
-    openGraph: {
-      images: settings.seo?.ogImage && typeof settings.seo.ogImage === 'object' && settings.seo.ogImage.url
-        ? [{ url: settings.seo.ogImage.url }]
-        : [],
-    }
-  };
-}
+//   return {
+//     metadataBase: new URL(baseUrl),
+//     alternates: {
+//       canonical: '/',
+//     },
+//     title: settings.seo?.title || "BOGUS Jewelry - Timeless Elegance, Unmatched Brilliance",
+//     description: settings.seo?.description || "Discover exquisite jewelry crafted with passion and precision. Explore our collections of silver, gold, and unique designs.",
+//     openGraph: {
+//       images: settings.seo?.ogImage && typeof settings.seo.ogImage === 'object' && settings.seo.ogImage.url
+//         ? [{ url: settings.seo.ogImage.url }]
+//         : [],
+//     }
+//   };
+// }
 
 export const viewport = {
   width: 'device-width',
