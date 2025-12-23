@@ -6,7 +6,7 @@ import { PenTool, Heart, ShieldCheck, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Testimonials from '@/components/features/Testimonials';
 import RelatedLinks from '@/components/RelatedLinks';
-// import { luxuryTransition } from '@utils/animations';
+import { luxuryTransition } from '@utils/animations';
 import { Container } from '@/components/ui/Container';
 import HeroVideo from '@/components/features/HeroVideo';
 import JsonLd from '@/components/JsonLd';

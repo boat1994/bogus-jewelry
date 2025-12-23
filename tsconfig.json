@@ -37,10 +37,10 @@
         "src/components"
       ],
       "@utils/*": [
-        "./src/utils/*"
+        "src/utils/*"
       ],
       "@utils": [
-        "./src/utils"
+        "sc/utils"
       ]
     },
     "target": "ES2022",
