@@ -33,11 +33,14 @@
     "@payloadcms/ui": "3.69.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
+    "framer-motion": "^12.23.26",
     "graphql": "^16.8.1",
+    "lucide-react": "^0.562.0",
     "next": "15.4.10",
     "payload": "3.69.0",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",

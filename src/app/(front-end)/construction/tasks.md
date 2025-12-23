@@ -1,0 +1,5 @@
+- [x] Create the construction page
+- [x] Add a more visually appealing design
+- [x] hide countdown timer
+- [x] change background to black
+- [x] add logo C:\Users\User\Documents\project\bogus\public\logos\bogus_logo.png to center
