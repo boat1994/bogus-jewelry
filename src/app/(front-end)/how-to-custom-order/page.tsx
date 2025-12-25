@@ -7,6 +7,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
 import { Gem, ShieldCheck, Sparkles, PenTool, Heart } from 'lucide-react'
 import RelatedLinks from '@/components/RelatedLinks'
 import Testimonials from '@/components/features/Testimonials'
+import HeroSection from '@/components/features/HeroSection'
 
 import { luxuryTransition, scrollSpringConfig } from '@utils/animations'
 
@@ -58,22 +59,7 @@ const ScrollLine = () => {
   )
 }
 
-const heroImages = [
-  '/images/custom-order/carosel/1.JPG',
-  '/images/custom-order/carosel/2.JPG',
-  '/images/custom-order/carosel/3.JPG',
-]
-
 const CustomOrderPage = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
-
   const steps = [
     {
       id: 1,
@@ -141,54 +127,30 @@ const CustomOrderPage = () => {
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans selection:bg-yellow-100 pb-6 relative">
       {/* --- Section 1: Hero Section (The Hook) --- */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Slideshow Background */}
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              key={currentImageIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={heroImages[currentImageIndex]}
-                alt="Custom Order Process"
-                fill
-                className="object-cover"
-                priority
-                quality={100}
-                unoptimized
-              />
-            </motion.div>
-          </AnimatePresence>
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
-        </div>
-
-        {/* Content */}
-        <div className="max-w-3xl mx-auto relative z-20 text-center px-4 mt-16">
-          <Reveal immediate={true}>
-            <span className="text-xs font-bold tracking-widest text-yellow-400 uppercase mb-4 block drop-shadow-md">
-              Custom Made Jewelry
-            </span>
-          </Reveal>
-          <Reveal delay={0.2} immediate={true}>
-            <h1 className="text-3xl md:text-5xl font-serif text-white mb-4 leading-tight drop-shadow-lg">
-              From Imagination to Reality: <br />
-              <span className="text-white/90 italic">Craft Your Unique Jewelry</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.4} immediate={true}>
-            <p className="text-white/80 font-light text-sm md:text-base mb-8 leading-relaxed max-w-xl mx-auto drop-shadow-md">
-              จากจินตนาการสู่ความจริง... สั่งทำเครื่องประดับที่ทำมา <br />
-              เพื่อคุณโดยเฉพาะกับ Bogus
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <HeroSection
+        media={{
+          type: 'images',
+          src: [
+            '/images/custom-order/carosel/1.JPG',
+            '/images/custom-order/carosel/2.JPG',
+            '/images/custom-order/carosel/3.JPG',
+          ]
+        }}
+        badge="Custom Made Jewelry"
+        title={
+          <>
+            From Imagination to Reality: <br />
+            <span className="text-white/90 italic">Craft Your Unique Jewelry</span>
+          </>
+        }
+        description={
+          <>
+            จากจินตนาการสู่ความจริง... สั่งทำเครื่องประดับที่ทำมา <br />
+            เพื่อคุณโดยเฉพาะกับ Bogus
+          </>
+        }
+        height="h-screen"
+      />
 
       {/* --- Section 2: The 5-Step Timeline --- */}
       <section className="container mx-auto px-4 max-w-5xl py-1 relative z-10 mt-12">

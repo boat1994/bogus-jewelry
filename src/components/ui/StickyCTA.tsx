@@ -1,67 +1,66 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Copy, Check } from 'lucide-react';
-import TikTokOverlay from '../TikTokOverlay';
-import { useTikTokInterceptor } from '@/hooks/useTikTokInterceptor';
+import React, { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+import { MessageCircle, Copy, Check } from 'lucide-react'
+import TikTokOverlay from '../TikTokOverlay'
+import { useTikTokInterceptor } from '@/hooks/useTikTokInterceptor'
 
-import { usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation'
 
 const StickyCTA = () => {
-  const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(true);
-  const { showTikTokOverlay, setShowTikTokOverlay, copied, handleCopy, handleLineClick } = useTikTokInterceptor();
-  const lastScrollY = useRef(0);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-
+  const pathname = usePathname()
+  const [isVisible, setIsVisible] = useState(true)
+  const { showTikTokOverlay, setShowTikTokOverlay, copied, handleCopy, handleLineClick } =
+    useTikTokInterceptor()
+  const lastScrollY = useRef(0)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    let ticking = false;
+    let ticking = false
 
     const updateScrollDirection = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = window.scrollY
 
       // Reset the inactivity timer on every scroll event
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current)
       }
 
       // If user stops scrolling for 2 seconds, show the button
       timeoutRef.current = setTimeout(() => {
-        setIsVisible(true);
-      }, 2000);
+        setIsVisible(true)
+      }, 2000)
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
           // Show if scrolling up
           if (currentScrollY < lastScrollY.current) {
-            setIsVisible(true);
+            setIsVisible(true)
           }
           // Hide if scrolling down and past 100px
           else if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
-            setIsVisible(false);
+            setIsVisible(false)
           }
-          lastScrollY.current = currentScrollY;
-          ticking = false;
-        });
-        ticking = true;
+          lastScrollY.current = currentScrollY
+          ticking = false
+        })
+        ticking = true
       }
-    };
+    }
 
-    window.addEventListener("scroll", updateScrollDirection, { passive: true });
+    window.addEventListener('scroll', updateScrollDirection, { passive: true })
 
     return () => {
-      window.removeEventListener("scroll", updateScrollDirection);
+      window.removeEventListener('scroll', updateScrollDirection)
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current)
       }
-    };
-  }, []);
+    }
+  }, [])
   // Hide on contact page
-  if (pathname === '/contact') return null;
+  if (pathname === '/contact') return null
 
   return (
     <>
@@ -75,10 +74,10 @@ const StickyCTA = () => {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-8 right-6 z-50 pointer-events-none"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
             <div className="flex items-center gap-3 pointer-events-auto">
@@ -121,7 +120,7 @@ const StickyCTA = () => {
         )}
       </AnimatePresence>
     </>
-  );
-};
+  )
+}
 
-export default StickyCTA;
+export default StickyCTA

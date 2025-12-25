@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import StickyCTA from '@/components/ui/StickyCTA';
+import HeroSection from '@/components/features/HeroSection';
 import { ChevronDown } from 'lucide-react';
 
 const MasterpiecePage = () => {
@@ -12,50 +13,23 @@ const MasterpiecePage = () => {
         <div className="bg-black text-white font-sans selection:bg-yellow-900 selection:text-white overflow-x-hidden">
 
             {/* --- Section 1: The Grand Reveal (Hero) --- */}
-            <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center bg-black">
-                {/* Video Background */}
-                <div className="absolute inset-0 z-0">
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="w-full h-full object-cover opacity-60"
-                    >
-                        <source src="/images/our-gallery/masterpeice-1/video/IMG_2524.MP4" type="video/mp4" />
-                    </video>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
-                </div>
-
-                {/* Content Overlay */}
-                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                    >
-                        <span className="inline-block py-1 px-3 border border-yellow-600/50 rounded-full text-yellow-500 text-xs tracking-[0.2em] uppercase mb-6 backdrop-blur-sm">
-                            The Masterpiece Collection
-                        </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 uppercase tracking-widest leading-none" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
-                            Limitless<br />Luxury
-                        </h1>
-                        <p className="text-slate-300 font-light text-lg md:text-xl tracking-wide max-w-2xl mx-auto mb-12">
-                            ที่สุดแห่งงานหัตถศิลป์... บทพิสูจน์ความเชี่ยวชาญที่ไร้ขีดจำกัดจาก BOGUS
-                        </p>
-                    </motion.div>
-                </div>
-
-                {/* Scroll Hint */}
-                <motion.div
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/50 flex flex-col items-center gap-2"
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                >
-                    <span className="text-xs uppercase tracking-widest">Discover</span>
-                    <ChevronDown size={20} />
-                </motion.div>
-            </section>
+            <HeroSection
+                media={{
+                    type: 'video',
+                    src: '/images/our-gallery/masterpeice-1/video/IMG_2524.MP4'
+                }}
+                badge="The Masterpiece Collection"
+                title={
+                    <>
+                        Limitless<br />Luxury
+                    </>
+                }
+                titleClassName="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 uppercase tracking-widest leading-none drop-shadow-2xl"
+                description="ที่สุดแห่งงานหัตถศิลป์... บทพิสูจน์ความเชี่ยวชาญที่ไร้ขีดจำกัดจาก BOGUS"
+                descriptionClassName="text-slate-300 font-light text-lg md:text-xl tracking-wide max-w-2xl mx-auto mb-12"
+                showScrollHint={true}
+                overlayOpacity={40}
+            />
 
             {/* --- Section 2: The Story of 470k --- */}
             <section className="py-24 md:py-32 px-4 bg-[#0a0a0a] overflow-hidden">
