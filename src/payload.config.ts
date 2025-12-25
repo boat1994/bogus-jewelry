@@ -1,6 +1,6 @@
 import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
 // 1. เพิ่ม Import นี้
-import { sqliteAdapter } from '@payloadcms/db-sqlite' 
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
