@@ -7,9 +7,12 @@ const nextConfig = {
     serverComponentsExternalPackages: [
       'libsql',
       '@libsql/client',
+      '@libsql/hrana-client',
+      '@libsql/isomorphic-ws',
+      'ws',
       'better-sqlite3',
       '@payloadcms/db-sqlite',
-      'jose',
+      'sharp',
     ],
   },
 
