@@ -1,4 +1,6 @@
 import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
+// 1. เพิ่ม Import นี้
+import { sqliteAdapter } from '@payloadcms/db-sqlite' 
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -36,7 +38,20 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: sqliteD1Adapter({ binding: cloudflare.env.D1 }),
+
+  // 2. แก้ไขส่วน DB ตรงนี้
+  // ถ้ามี process.env.DATABASE_URI (Local) ให้ใช้ sqliteAdapter
+  // ถ้าไม่มี (Production/Server) ให้ใช้ sqliteD1Adapter ตามเดิม
+  db: process.env.DATABASE_URI
+    ? sqliteAdapter({
+        client: {
+          url: process.env.DATABASE_URI,
+        },
+      })
+    : sqliteD1Adapter({
+        binding: cloudflare.env.D1,
+      }),
+
   plugins: [
     r2Storage({
       bucket: cloudflare.env.R2,
@@ -45,7 +60,7 @@ export default buildConfig({
   ],
 })
 
-// Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46
+// ... (ฟังก์ชัน getCloudflareContextFromWrangler คงไว้เหมือนเดิม)
 function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
   return import(/* webpackIgnore: true */ `${'__wrangler'.replaceAll('_', '')}`).then(
     ({ getPlatformProxy }) =>
