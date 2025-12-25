@@ -25,6 +25,7 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@libsql/isomorphic-ws": "^0.1.5",
     "@opennextjs/cloudflare": "^1.11.0",
     "@payloadcms/db-d1-sqlite": "3.69.0",
     "@payloadcms/db-sqlite": "^3.69.0",
@@ -42,7 +43,8 @@
     "payload": "3.69.0",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",
