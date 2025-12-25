@@ -9,6 +9,7 @@ const nextConfig = {
       '@libsql/client',
       'better-sqlite3',
       '@payloadcms/db-sqlite',
+      'jose',
     ],
   },
 
