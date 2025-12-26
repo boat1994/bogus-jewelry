@@ -1,6 +1,5 @@
 import { sqliteD1Adapter } from '@payloadcms/db-d1-sqlite'
 // 1. เพิ่ม Import นี้
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -43,8 +42,8 @@ export default buildConfig({
   // ถ้ามี process.env.DATABASE_URI (Local) ให้ใช้ sqliteAdapter
   // ถ้าไม่มี (Production/Server) ให้ใช้ sqliteD1Adapter ตามเดิม
   db: sqliteD1Adapter({
-        binding: cloudflare.env.D1,
-      }),
+    binding: cloudflare.env.D1,
+  }),
   plugins: [
     r2Storage({
       bucket: cloudflare.env.R2,
