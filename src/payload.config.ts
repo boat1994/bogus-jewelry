@@ -42,16 +42,9 @@ export default buildConfig({
   // 2. แก้ไขส่วน DB ตรงนี้
   // ถ้ามี process.env.DATABASE_URI (Local) ให้ใช้ sqliteAdapter
   // ถ้าไม่มี (Production/Server) ให้ใช้ sqliteD1Adapter ตามเดิม
-  db: process.env.DATABASE_URI
-    ? sqliteAdapter({
-        client: {
-          url: process.env.DATABASE_URI,
-        },
-      })
-    : sqliteD1Adapter({
+  db: sqliteD1Adapter({
         binding: cloudflare.env.D1,
       }),
-
   plugins: [
     r2Storage({
       bucket: cloudflare.env.R2,
